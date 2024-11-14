@@ -17,7 +17,6 @@ import com.ifba.agenda.dtos.ContatoDTO;
 import com.ifba.agenda.services.ContatoService;
 
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/contatos")
@@ -37,14 +36,14 @@ public class ContatoController {
 	
 	
 	@PostMapping
-	public ResponseEntity<ContatoDTO> salvarCategoria(@Valid @RequestBody ContatoDTO contatoDTO, UriComponentsBuilder  uriBuilder) {
+	public ResponseEntity<ContatoDTO> salvarCategoria(@RequestBody ContatoDTO contatoDTO, UriComponentsBuilder  uriBuilder) {
 		return contatoService.salvarContato(contatoDTO, uriBuilder);
 	}
 
 	
 	@PutMapping("/{id}")
 	@Transactional
-	public ResponseEntity<ContatoDTO> atualizarCategoria(@Valid @RequestBody ContatoDTO contatoDTO, @PathVariable Long id) {
+	public ResponseEntity<ContatoDTO> atualizarCategoria(@RequestBody ContatoDTO contatoDTO, @PathVariable Long id) {
 		return contatoService.atualizarContato(contatoDTO, id);
 	}
 	
