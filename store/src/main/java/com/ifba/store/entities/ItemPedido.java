@@ -1,6 +1,8 @@
 package com.ifba.store.entities;
 import java.math.BigDecimal;
 
+import com.ifba.store.entities.dtos.ItemPedidoDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,7 +15,7 @@ public class ItemPedido {
  
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    private Long id; 
+    private Long itemPedidoId; 
  
     @ManyToOne 
     @JoinColumn(name = "produto_id") 
@@ -25,11 +27,30 @@ public class ItemPedido {
     private Integer quantidade; 
     private BigDecimal precoUnitario;
     
-	public Long getId() {
-		return id;
+	public ItemPedido(Long itemPedidoId, Produto produto, Pedido pedido, Integer quantidade, BigDecimal precoUnitario) {
+		super();
+		this.itemPedidoId = itemPedidoId;
+		this.produto = produto;
+		this.pedido = pedido;
+		this.quantidade = quantidade;
+		this.precoUnitario = precoUnitario;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	
+	public ItemPedido(ItemPedidoDTO itemPedidoDTO) {
+		super();
+		this.itemPedidoId = itemPedidoDTO.itemPedidoId();
+		this.produto = itemPedidoDTO.produto();
+		this.pedido = itemPedidoDTO.pedido();
+		this.quantidade = itemPedidoDTO.quantidade();
+		this.precoUnitario = itemPedidoDTO.precoUnitario();
+	}
+	
+	
+	public Long getItemPedidoId() {
+		return itemPedidoId;
+	}
+	public void setItemPedidoId(Long itemPedidoId) {
+		this.itemPedidoId = itemPedidoId;
 	}
 	public Produto getProduto() {
 		return produto;

@@ -1,5 +1,7 @@
 package com.ifba.store.entities;
 
+import com.ifba.store.entities.dtos.ClienteDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +16,24 @@ public class Cliente {
 	private String nome;
 	private String email;
 	private String telefone;
-	private String endereco;
+	private Endereco endereco;
+	
+	public Cliente(Long clienteId, String nome, String email, String telefone, Endereco endereco) {
+		super();
+		this.clienteId = clienteId;
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+		this.endereco = endereco;
+	}
+	public Cliente(ClienteDTO clienteDTO) {
+		super();
+		this.clienteId = clienteDTO.clienteId();
+		this.nome = clienteDTO.nome();
+		this.email = clienteDTO.email();
+		this.telefone = clienteDTO.telefone();
+		this.endereco = clienteDTO.endereco();
+	}
 	
 	public Long getClienteId() {
 		return clienteId;
@@ -40,10 +59,10 @@ public class Cliente {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public String getEndereco() {
+	public Endereco getEndereco() {
 		return endereco;
 	}
-	public void setEndereco(String endereco) {
+	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
 	

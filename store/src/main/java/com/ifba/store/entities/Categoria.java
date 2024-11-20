@@ -1,5 +1,7 @@
 package com.ifba.store.entities;
 
+import com.ifba.store.entities.dtos.CategoriaDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,14 +12,25 @@ public class Categoria {
  
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    private Long id; 
+    private Long categoriaId; 
     private String nome;
     
-	public Long getId() {
-		return id;
+	public Categoria(Long categoriaId, String nome) {
+		super();
+		this.categoriaId = categoriaId;
+		this.nome = nome;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	
+	public Categoria(CategoriaDTO categoriaDTO) {
+		this.categoriaId = categoriaDTO.categoriaId();
+		this.nome = categoriaDTO.nome();	
+	}
+	
+	public Long getCategoriaId() {
+		return categoriaId;
+	}
+	public void setCategoriaId(Long categoriaId) {
+		this.categoriaId = categoriaId;
 	}
 	public String getNome() {
 		return nome;

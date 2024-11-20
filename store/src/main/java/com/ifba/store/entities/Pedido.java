@@ -14,13 +14,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany; 
  
-
 @Entity 
 public class Pedido { 
  
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    private Long id; 
+    private Long pedidoId; 
  
     @ManyToOne 
     @JoinColumn(name = "cliente_id") 
@@ -34,12 +33,12 @@ public class Pedido {
     @Enumerated(EnumType.STRING) 
     private StatusPedido status;
 
-	public Long getId() {
-		return id;
+	public Long getPedidoId() {
+		return pedidoId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setPedidoId(Long pedidoId) {
+		this.pedidoId = pedidoId;
 	}
 
 	public Cliente getCliente() {
